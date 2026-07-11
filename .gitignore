@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Bun lockfile (causes Cloudflare build failures)
+bun.lockb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
