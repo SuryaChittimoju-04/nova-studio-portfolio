@@ -9,8 +9,8 @@ del /f /q .git\config.lock 2>nul
 del /f /q .git\index.lock 2>nul
 
 echo [2/6] Setting git identity...
-git config user.email "yaswanthbyrapuneni@gmail.com"
-git config user.name "Nova Studio"
+git config user.email "suryachittimoju3@gmail.com"
+git config user.name "SuryaChittimoju-04"
 
 echo [3/6] Removing bun.lockb from tracking...
 git rm --cached bun.lockb 2>nul
