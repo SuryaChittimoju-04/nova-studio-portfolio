@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Film, MessageSquare, ArrowRight, Check } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import charPoseServices from "@/assets/char-pose-services.png";
 
 const workflowSteps = [
   { icon: "📋", label: "Brief & Script Writing",  desc: "We map your brand story & plan every scene" },
@@ -78,32 +77,13 @@ export function ServicesSection() {
       <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.55 0.22 280 / 0.08), transparent 70%)" }} />
       <div className="relative mx-auto max-w-7xl px-6">
 
-        {/* Header: text left, character right — tightly coupled, no gap */}
-        <div className="flex items-end justify-between gap-4 mb-8">
-          <div>
-            <span className="text-xs font-medium tracking-[0.2em] text-primary uppercase">Services</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight text-foreground" style={{ letterSpacing: "-0.03em" }}>
-              What we do for you
-            </h2>
-            <p className="mt-4 text-muted-foreground">Two focused services. Both built to grow your business.</p>
-          </div>
-
-          {/* Character beside the heading */}
-          <div className="relative flex-shrink-0 flex items-end justify-end -mb-8" style={{ width: "clamp(130px, 18vw, 240px)" }}>
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-20 h-6 rounded-full blur-2xl pointer-events-none" style={{ background: "oklch(0.55 0.20 280 / 0.30)" }} />
-            <img
-              src={charPoseServices}
-              alt=""
-              className="relative z-10 object-contain object-bottom select-none"
-              style={{
-                height: "clamp(130px, 18vw, 240px)",
-                width: "100%",
-                mixBlendMode: "screen",
-                filter: "drop-shadow(0 8px 16px oklch(0.65 0.22 280 / 0.18))",
-              }}
-              draggable={false}
-            />
-          </div>
+        {/* Header */}
+        <div className="mb-10">
+          <span className="text-xs font-medium tracking-[0.2em] text-primary uppercase">Services</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight text-foreground" style={{ letterSpacing: "-0.03em" }}>
+            What we do for you
+          </h2>
+          <p className="mt-4 text-muted-foreground">Two focused services. Both built to grow your business.</p>
         </div>
 
         {/* Two service cards — no character inside */}

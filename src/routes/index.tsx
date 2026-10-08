@@ -4,6 +4,7 @@ import { Navbar } from "@/components/landing/Navbar";
 import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { MarqueeShowcase } from "@/components/landing/MarqueeShowcase";
+import { RecentWorksMarquee } from "@/components/landing/RecentWorksMarquee";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { ServicesSection } from "@/components/landing/ServicesSection";
 import { PricingSection } from "@/components/landing/PricingSection";
@@ -60,6 +61,7 @@ function Index() {
       <AboutSection />
       <ServicesSection />
       <PricingSection />
+      <RecentWorksMarquee />
       <ContactSection />
       <FooterSection />
     </div>

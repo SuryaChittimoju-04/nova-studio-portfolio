@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { WA_LINK } from "@/lib/wa";
-import { MessageCircle, Youtube, Mail, ArrowRight } from "lucide-react";
+import { MessageCircle, Youtube, Mail, Phone, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
-import charPoseContact from "@/assets/char-pose-contact.png";
 
 const FORM_EMAIL = "suryachittimoju3@gmail.com";
 
@@ -79,11 +78,6 @@ export function ContactSection() {
 
           {/* Right column */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <div className="relative flex items-end justify-center mb-1">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-8 rounded-full blur-2xl pointer-events-none" style={{ background: "oklch(0.65 0.22 280 / 0.28)" }} />
-              <img src={charPoseContact} alt="" className="relative z-10 object-contain object-bottom select-none drop-shadow-xl" style={{ height: "clamp(140px, 20vw, 200px)" }} draggable={false} />
-            </div>
-
             <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 rounded-2xl border border-green-500/20 bg-green-500/[0.06] p-5 transition-colors hover:bg-green-500/10">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-500/20 text-green-400">
                 <MessageCircle className="h-5 w-5" />
@@ -95,16 +89,49 @@ export function ContactSection() {
               <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
             </a>
 
-            <a href={`mailto:${FORM_EMAIL}`} className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:bg-white/[0.06]">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-primary">
-                <Mail className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">{FORM_EMAIL}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">For project briefs and partnerships</p>
-              </div>
-              <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-            </a>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex flex-col gap-3">
+              <a href={`mailto:${FORM_EMAIL}`} className="group flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-primary">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{FORM_EMAIL}</p>
+                  <p className="text-[11px] text-muted-foreground">Surya — AI Strategy & Growth</p>
+                </div>
+              </a>
+              <div className="h-px bg-white/[0.06]" />
+              <a href="mailto:prafuljhaa12@gmail.com" className="group flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-primary">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">prafuljhaa12@gmail.com</p>
+                  <p className="text-[11px] text-muted-foreground">Praful — Creative Head & Branding</p>
+                </div>
+              </a>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex flex-col gap-3">
+              <a href="tel:+918121048585" className="group flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-green-400">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">+91 81210 48585</p>
+                  <p className="text-[11px] text-muted-foreground">Praful Kumar Jha</p>
+                </div>
+              </a>
+              <div className="h-px bg-white/[0.06]" />
+              <a href="tel:+916305779552" className="group flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-green-400">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">+91 63057 79552</p>
+                  <p className="text-[11px] text-muted-foreground">Surya Chittimoju</p>
+                </div>
+              </a>
+            </div>
 
             <a href="https://www.youtube.com/@Astravidyastudios" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:bg-white/[0.06]">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-400">

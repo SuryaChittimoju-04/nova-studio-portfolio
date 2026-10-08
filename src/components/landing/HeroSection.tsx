@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, MessageCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import heroBg from "@/assets/hero-cinematic-bg.jpg";
-import charPoseHero from "@/assets/char-pose-hero.png";
 import { WA_LINK } from "@/lib/wa";
 
 function CountUp({ to, suffix = "", duration = 1100, delay = 0 }: {
@@ -65,99 +63,114 @@ function RotatingPhrase() {
 }
 
 export function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const onTimeUpdate = () => {
+      if (video.currentTime >= 50) {
+        video.currentTime = 0;
+        video.play();
+      }
+    };
+    video.addEventListener("timeupdate", onTimeUpdate);
+    return () => video.removeEventListener("timeupdate", onTimeUpdate);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden pt-14 pb-0 md:pt-16 md:pb-0">
-      {/* Cinematic background */}
+    <section className="relative overflow-hidden min-h-screen flex items-center pt-20 pb-16">
+      {/* ── Video background ── */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-        <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(ellipse 80% 60% at 50% 30%, oklch(0.55 0.22 280 / 0.25), transparent 70%), radial-gradient(ellipse 60% 50% at 70% 60%, oklch(0.65 0.20 230 / 0.20), transparent 70%)" }} />
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ opacity: 0.80 }}
+        >
+          <source src="/videos/hero-bg.webm" type="video/webm" />
+        </video>
+        {/* Dark overlays for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/30 to-transparent" />
+        {/* Purple ambient tint */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse 55% 55% at 20% 45%, oklch(0.55 0.22 280 / 0.22), transparent 65%)",
+          }}
+        />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-6 items-center">
+      {/* ── Content ── */}
+      <div className="relative mx-auto max-w-5xl px-6 w-full">
+        {/* Badge */}
+        <div className="opacity-0 animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-white/60 backdrop-blur-md mb-8">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-live" />
+          End-to-End AI Video Production
+        </div>
 
-          {/* Left: copy */}
-          <div className="pb-16 lg:pb-0 pt-2 lg:pt-0 order-last lg:order-first">
-            <div className="opacity-0 animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-md">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-live" />
-              End-to-End AI Video Production
-            </div>
+        {/* Heading */}
+        <h1
+          className="opacity-0 animate-fade-up font-bold tracking-tight text-white mb-6"
+          style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", lineHeight: 1.06, letterSpacing: "-0.035em" }}
+        >
+          Your Brand Needs<br />
+          <RotatingPhrase />
+        </h1>
 
-            <h1
-              className="mt-6 opacity-0 animate-fade-up font-semibold tracking-tight text-foreground"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)", lineHeight: 1.06, letterSpacing: "-0.04em" }}
-            >
-              Your Brand Needs<br />
-              <RotatingPhrase />
-            </h1>
+        {/* Subtext */}
+        <p className="max-w-xl text-base text-white/60 opacity-0 animate-fade-up-delay md:text-lg mb-10" style={{ lineHeight: 1.7 }}>
+          End-to-end AI production &mdash; script, visuals, voiceover &amp; music &mdash; delivered in days, not weeks. Starting at &#8377;12,000.
+        </p>
 
-            <p className="mt-5 max-w-lg text-base text-muted-foreground opacity-0 animate-fade-up-delay md:text-lg">
-              End-to-end AI production &mdash; script, visuals, voiceover &amp; music &mdash; delivered in days, not weeks. Starting at &#8377;5,000.
-            </p>
+        {/* CTAs */}
+        <div className="flex flex-wrap items-center gap-3 opacity-0 animate-fade-up-delay mb-16">
+          <Button size="lg" asChild>
+            <Link to="/work">
+              <Play className="mr-1 h-4 w-4" />
+              View Our Work
+            </Link>
+          </Button>
+          <Button size="lg" variant="outline" asChild className="border-white/20 bg-white/[0.06] backdrop-blur-md hover:bg-white/[0.12] text-white">
+            <a href="#contact">
+              Start a Project
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </a>
+          </Button>
+          <Button size="lg" variant="ghost" asChild className="text-white/80 hover:text-white hover:bg-white/[0.08]">
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="mr-1 h-4 w-4" />
+              WhatsApp
+            </a>
+          </Button>
+        </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3 opacity-0 animate-fade-up-delay">
-              <Button size="lg" asChild>
-                <Link to="/work">
-                  <Play className="mr-1 h-4 w-4" />
-                  View Our Work
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="border-white/15 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.06]">
-                <a href="#contact">
-                  Start a Project
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </a>
-              </Button>
-              <Button size="lg" variant="ghost" asChild>
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-1 h-4 w-4" />
-                  WhatsApp
-                </a>
-              </Button>
-            </div>
-
-            <div className="mt-10 flex items-center gap-8 opacity-0 animate-fade-up-delay">
-              <div className="flex flex-col gap-1.5">
-                <span className="font-bold text-foreground tabular-nums" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>
-                  <CountUp to={100} suffix="+" duration={1200} delay={1200} />
-                </span>
-                <span className="text-[10px] tracking-[0.12em] uppercase text-muted-foreground">Mins Delivered</span>
-              </div>
-              <div className="h-10 w-px bg-white/10" />
-              <div className="flex flex-col gap-1.5">
-                <span className="font-bold text-foreground tabular-nums" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>
-                  <CountUp to={9} suffix="+" duration={1000} delay={1300} />
-                </span>
-                <span className="text-[10px] tracking-[0.12em] uppercase text-muted-foreground">Brands Served</span>
-              </div>
-              <div className="h-10 w-px bg-white/10" />
-              <div className="flex flex-col gap-1.5">
-                <span className="font-bold text-foreground tabular-nums" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>
-                  &#8377;<CountUp to={5} suffix="k" duration={900} delay={1100} />
-                </span>
-                <span className="text-[10px] tracking-[0.12em] uppercase text-muted-foreground">Starting Price</span>
-              </div>
-            </div>
+        {/* Stats */}
+        <div className="flex flex-wrap items-center gap-10 opacity-0 animate-fade-up-delay">
+          <div className="flex flex-col gap-1">
+            <span className="font-bold text-white tabular-nums" style={{ fontSize: "clamp(2rem, 4.5vw, 3rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+              <CountUp to={500} suffix="+" duration={1400} delay={1100} />
+            </span>
+            <span className="text-[10px] tracking-[0.14em] uppercase text-white/45">Mins Delivered</span>
           </div>
-
-          {/* Right: character */}
-          <div className="relative flex items-end justify-center lg:justify-end order-first lg:order-last -mb-4 lg:mb-0">
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-48 h-12 rounded-full blur-3xl pointer-events-none" style={{ background: "oklch(0.65 0.22 280 / 0.28)" }} />
-            <img
-              src={charPoseHero}
-              alt=""
-              className="relative z-10 object-contain object-bottom select-none"
-              style={{
-                height: "clamp(220px, 55vw, 560px)",
-                maxWidth: "100%",
-                filter: "drop-shadow(0 20px 40px oklch(0.65 0.22 280 / 0.25))",
-                mixBlendMode: "screen",
-              }}
-              draggable={false}
-            />
+          <div className="h-10 w-px bg-white/15" />
+          <div className="flex flex-col gap-1">
+            <span className="font-bold text-white tabular-nums" style={{ fontSize: "clamp(2rem, 4.5vw, 3rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+              <CountUp to={50} suffix="+" duration={1100} delay={1200} />
+            </span>
+            <span className="text-[10px] tracking-[0.14em] uppercase text-white/45">Brands Served</span>
           </div>
-
+          <div className="h-10 w-px bg-white/15" />
+          <div className="flex flex-col gap-1">
+            <span className="font-bold text-white tabular-nums" style={{ fontSize: "clamp(2rem, 4.5vw, 3rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+              &#8377;<CountUp to={12} suffix="k" duration={900} delay={1000} />
+            </span>
+            <span className="text-[10px] tracking-[0.14em] uppercase text-white/45">Starting Price</span>
+          </div>
         </div>
       </div>
     </section>

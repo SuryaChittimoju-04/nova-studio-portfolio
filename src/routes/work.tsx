@@ -39,7 +39,7 @@ import gymThumb2    from "@/assets/portfolio/GYM2.png";
 export const Route = createFileRoute("/work")({ component: WorkPage });
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-type FilterId = "all" | "image" | "educational" | "reel" | "branding";
+type FilterId = "all" | "image" | "educational" | "reel" | "branding" | "design";
 
 interface WorkItem {
   id: string;
@@ -60,6 +60,29 @@ const DRIVE_FOLDER = "https://drive.google.com/drive/folders/1Nl48Iab2NyKkIqGv8p
 
 // ── Work items ────────────────────────────────────────────────────────────────
 const ALL_ITEMS: WorkItem[] = [
+  // ── Featured client videos — TOP ─────────────────────────────────────────
+  {
+    id: "cl1", categories: ["branding", "reel"], type: "video",
+    thumbnail: ytThumb("KeZToOaCfUw"),
+    title: "Indian Oil × Dr.Marketo — Brand Campaign",
+    label: "Dr.Marketo",
+    embedUrl: ytEmbed("KeZToOaCfUw"),
+  },
+  {
+    id: "cl2", categories: ["branding"], type: "video",
+    thumbnail: "",
+    title: "Industrial Showcase",
+    label: "Nova Studio",
+    embedUrl: driveEmbed("1wN2DZL6ghCvvfb4pI4VWrfOb1R4D8h4x"),
+  },
+  {
+    id: "cl3", categories: ["branding"], type: "video",
+    thumbnail: "",
+    title: "Indian Oil Testimonial",
+    label: "Nova Studio",
+    embedUrl: driveEmbed("1vkuvriS-J3Q4fSnReQpZB9Nr7GpPz2wL"),
+  },
+
   // ── Educational videos (Astravidya) ───────────────────────────────────────
   {
     id: "edu1", categories: ["educational", "reel"], type: "video",
@@ -165,6 +188,38 @@ const ALL_ITEMS: WorkItem[] = [
   { id: "ai8", categories: ["image"], type: "image", thumbnail: ai08, title: "AI Product Visual", label: "Nova Studio" },
   { id: "ai9", categories: ["image"], type: "image", thumbnail: ai09, title: "AI Product Visual", label: "Nova Studio" },
 
+  // ── Praful Kumar Jha — Graphic Design & Motion Works (Behance) ────────────
+  { id: "d1", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/255664647/AI-Visual-Campaigns",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/37141a255664647.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "AI Visual Campaigns", label: "Praful Kumar Jha" },
+  { id: "d2", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/244534665/Education-Creative-Works",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/1f7322244534665.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Education Creative Works", label: "Praful Kumar Jha" },
+  { id: "d3", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/244428635/Real-Estate-Works",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/60bb4d244428635.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Real Estate Works", label: "Praful Kumar Jha" },
+  { id: "d4", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/244415869/Carousel-Posts",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/e2a3ac244415869.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "SMM Carousel Posts", label: "Praful Kumar Jha" },
+  { id: "d5", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/244413841/Video-Editing-Motion-Graphics_2026",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/fec2a0244413841.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Editing & Motion Graphics", label: "Praful Kumar Jha" },
+  { id: "d6", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/244409931/Social-Media-Posts_2026",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/0180a3244409931.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Social Media Posts", label: "Praful Kumar Jha" },
+  { id: "d7", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/160023091/Video-Edits-Logo-Reveals-Promos",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/ac9efd160023091.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Video Edits & Logo Reveals", label: "Praful Kumar Jha" },
+  { id: "d8", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/160011319/SMM-WORKS",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/68d494160011319.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "SMM Works", label: "Praful Kumar Jha" },
+  { id: "d9", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/159993425/Motion-Graphic-Works",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/27c72f159993425.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Motion Graphic Works", label: "Praful Kumar Jha" },
+  { id: "d10", categories: ["design"], type: "image", externalUrl: "https://www.behance.net/gallery/159991005/Print-Media-Works",
+    thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/027590159991005.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    title: "Print Media Works", label: "Praful Kumar Jha" },
+
   // ── Gym photos ─────────────────────────────────────────────────────────────
   { id: "g1",  categories: ["image"], type: "image", thumbnail: gym1,  title: "Gym Photography", label: "Fitness Brand" },
   { id: "g2",  categories: ["image"], type: "image", thumbnail: gym2,  title: "Gym Photography", label: "Fitness Brand" },
@@ -189,6 +244,7 @@ const FILTERS: { id: FilterId; label: string; emoji: string }[] = [
   { id: "educational", label: "Educational Videos", emoji: "🎓" },
   { id: "reel",        label: "Reels / Shorts",     emoji: "🎬" },
   { id: "branding",    label: "Branding",           emoji: "✦" },
+  { id: "design",      label: "Graphic Design",     emoji: "🎨" },
 ];
 
 // ── Card components ───────────────────────────────────────────────────────────
@@ -232,11 +288,19 @@ function ImageCard({ item, onClick }: { item: WorkItem; onClick: () => void }) {
   );
 }
 
-function VideoCard({ item, onPlay }: { item: WorkItem; onPlay: () => void }) {
+const CARD_GRADIENTS = [
+  "linear-gradient(135deg, #1e1040 0%, #2d0f5e 50%, #0f1f3c 100%)",
+  "linear-gradient(135deg, #0a1f3c 0%, #0e3a5e 50%, #0f2b1e 100%)",
+  "linear-gradient(135deg, #1a0a2e 0%, #2e1065 50%, #0f0f2e 100%)",
+];
+
+function VideoCard({ item, onPlay, idx = 0 }: { item: WorkItem; onPlay: () => void; idx?: number }) {
   const handleClick = () => {
     if (item.embedUrl) { onPlay(); }
     else if (item.externalUrl) { window.open(item.externalUrl, "_blank", "noopener noreferrer"); }
   };
+
+  const hasThumb = !!item.thumbnail;
 
   return (
     <button
@@ -254,12 +318,24 @@ function VideoCard({ item, onPlay }: { item: WorkItem; onPlay: () => void }) {
         (e.currentTarget as HTMLElement).style.borderColor = "";
       }}
     >
-      <img
-        src={item.thumbnail}
-        alt={item.title}
-        loading="lazy"
-        className="w-full h-auto block"
-      />
+      {hasThumb ? (
+        <img
+          src={item.thumbnail}
+          alt={item.title}
+          loading="lazy"
+          className="w-full h-auto block"
+        />
+      ) : (
+        /* Gradient placeholder when no thumbnail available */
+        <div
+          className="w-full flex flex-col items-center justify-center"
+          style={{ minHeight: 180, background: CARD_GRADIENTS[idx % CARD_GRADIENTS.length] }}
+        >
+          <div className="text-4xl mb-3 opacity-40">🎬</div>
+          <p className="text-sm font-semibold text-white/70 px-4 text-center leading-snug">{item.title}</p>
+          <p className="text-[11px] text-white/35 mt-1">{item.label}</p>
+        </div>
+      )}
       {/* Dark overlay always present on video */}
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/55 transition-colors duration-300" />
       {/* Play button */}
@@ -318,9 +394,10 @@ function WorkPage() {
     : ALL_ITEMS.filter(item => item.categories.includes(filter));
 
   const handleCardAction = useCallback((item: WorkItem) => {
-    if (item.type === "image") { setLightbox(item); }
-    else if (item.embedUrl)   { setActiveEmbed(item.embedUrl); }
-    else if (item.externalUrl){ window.open(item.externalUrl, "_blank", "noopener noreferrer"); }
+    if (item.type === "image" && item.externalUrl) { window.open(item.externalUrl, "_blank", "noopener noreferrer"); }
+    else if (item.type === "image") { setLightbox(item); }
+    else if (item.embedUrl)        { setActiveEmbed(item.embedUrl); }
+    else if (item.externalUrl)     { window.open(item.externalUrl, "_blank", "noopener noreferrer"); }
   }, []);
 
   return (
@@ -422,7 +499,7 @@ function WorkPage() {
           Real brands. Real results.
         </h1>
         <p className="mt-2 text-sm text-white/40">
-          AI visuals, educational content & brand films — all under one roof.
+          AI videos, graphic design, motion graphics & brand films — all under one roof.
         </p>
       </div>
 
@@ -438,7 +515,7 @@ function WorkPage() {
               {item.type === "image" ? (
                 <ImageCard item={item} onClick={() => handleCardAction(item)} />
               ) : (
-                <VideoCard item={item} onPlay={() => handleCardAction(item)} />
+                <VideoCard item={item} onPlay={() => handleCardAction(item)} idx={idx} />
               )}
             </div>
           ))}
